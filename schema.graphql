@@ -1,0 +1,53 @@
+type User {
+    userId: ID
+    firstName: String
+    lastName: String
+    mobileNo: String
+    emailAddress: String
+    penName: String
+    bookmarks: [Blog]
+}
+
+type Blog {
+    blogId: ID
+    title: String
+    category: Category
+    tags: [String]
+    body: String
+    appreciations: [User]
+    Comments: [Comment]
+    userId: Int
+    date: String
+    edited: Boolean
+    lastEditedAt: String
+}
+
+type Category {
+    categoryId: Int
+    categoryName: String
+}
+
+type Comment {
+    commentId: Int
+    user: User
+    body: String
+    blogId: Int
+    subComments: Comment
+}
+
+
+input AddBlogInput {
+    title: String
+    category: Category
+    body: String
+    tags: [String]
+}
+
+type Query {
+    getAllBlogs(): Blog
+}
+
+type Mutations {
+    addBlog(blog: AddBlogInput): Blog
+}
+
